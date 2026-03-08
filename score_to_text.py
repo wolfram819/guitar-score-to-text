@@ -344,20 +344,25 @@ def parse_musicxml_to_text(musicxml_files, output_path):
                     elif isinstance(elem, m21.note.Note):
                         name = _note_name_jp(elem)
                         dur = _duration_name(elem.duration)
-                        s = _estimate_guitar_string(elem)
+                        # Temporarily disable string estimation due to accuracy issues
+                        # s = _estimate_guitar_string(elem)
                         ns = f"{name}{elem.octave} ({dur})"
-                        if s:
-                            ns += f" [{s}弦]"
+                        # if s:
+                        #     ns += f" [{s}弦]"
+                        
+                        # Debug: check if accidental is detected
+                        if elem.pitch.accidental:
+                            print(f"  DEBUG: Found accidental {elem.pitch.accidental.alter} on {name}{elem.octave}")
                         stem = getattr(elem, "stemDirection", "")
                         (bass if stem == "down" else melody).append((off, ns))
 
                     elif isinstance(elem, m21.chord.Chord):
                         parts = []
                         for n in elem.notes:
-                            sn = _estimate_guitar_string(n)
+                            # sn = _estimate_guitar_string(n)
                             p = f"{_note_name_jp(n)}{n.octave}"
-                            if sn:
-                                p += f"[{sn}弦]"
+                            # if sn:
+                            #     p += f"[{sn}弦]"
                             parts.append(p)
                         dur = _duration_name(elem.duration)
                         chords.append((off, f"[{'+'.join(parts)}] ({dur})"))
@@ -375,12 +380,13 @@ def parse_musicxml_to_text(musicxml_files, output_path):
                     for off, ns in sorted(bass, key=lambda x: x[0]):
                         f.write(f"    拍{off + 1:.1f}: {ns}\n")
 
-                if melody or chords:
-                    hints = _suggest_position(melody + chords)
-                    if hints:
-                        f.write("  演奏ポジション:\n")
-                        for h in hints[:3]:
-                            f.write(f"    {h}\n")
+                # Temporarily disable position hints due to string estimation issues
+                # if melody or chords:
+                #     hints = _suggest_position(melody + chords)
+                #     if hints:
+                #         f.write("  演奏ポジション:\n")
+                #         for h in hints[:3]:
+                #             f.write(f"    {h}\n")
                 f.write("\n")
 
             # Harmonic progression

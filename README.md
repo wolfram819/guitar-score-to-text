@@ -61,18 +61,20 @@ Guitar Score → Text Analysis
 
 【小節 1】
   メロディ（高音部）:
-    拍1.0: ソ4 (4分) [4弦]
-    拍2.0: ラ4 (8分) [3弦]
+    拍1.0: ド4 (4分) [3弦]
+    拍2.0: ミ4 (4分) [2弦]
+    拍3.0: ソ4 (4分) [4弦]
   低音（伴奏）:
-    拍1.0: ミ3 (2分) [5弦]
+    拍1.0: ド3 (全) [1弦]
   演奏ポジション:
     中音部: 5-7ポジション推奨
 
 ======================================================================
 和声進行（ギター用） / Harmonic Progression
 ======================================================================
-  小節1: ミm (開放Em) → ラm (開放Am)
-  小節2: レ (開放D) → ソ (開放G)
+  小節1: ド (開放C)
+  小節2: ソ (開放G)
+  小節3: ラm (開放Am)
 ```
 
 ### 4. Feed to AI / AIに読ませる
@@ -165,9 +167,34 @@ export LD_LIBRARY_PATH=$(python -c "import nvidia.cudnn; print(nvidia.cudnn.__pa
 
 ---
 
+## Disclaimer / 免責事項
+
+### Copyright Notice / 著作権について
+
+This tool is intended for use with **your own original scores** or **public domain / copyright-free scores**. Users are solely responsible for ensuring that their use of this tool complies with applicable copyright laws.
+
+本ツールは、**ご自身のオリジナル楽譜**または**パブリックドメイン（著作権フリー）の楽譜**での使用を想定しています。著作権法の遵守はユーザーの責任となります。
+
+- Do **not** redistribute converted text of copyrighted scores.
+- 著作権のある楽譜の変換テキストを再配布**しないでください**。
+- The converted text is a derivative work of the original score.
+- 変換テキストは元の楽譜の二次的著作物に該当します。
+- Personal study and research use is generally permitted under fair use / private use exceptions.
+- 個人の学習・研究目的での利用は、一般的に私的使用の範囲内です。
+
+### No Warranty / 無保証
+
+This software is provided "as is" without warranty of any kind. The authors are not responsible for any errors in the OMR output or the resulting analysis.
+
+本ソフトウェアは「現状のまま」提供され、いかなる保証もありません。OMR出力や解析結果の誤りについて、作者は責任を負いません。
+
+---
+
 ## License / ライセンス
 
 MIT License – see [LICENSE](LICENSE)
+
+> **Note:** This project depends on [PyMuPDF](https://pymupdf.readthedocs.io/) which is licensed under AGPL-3.0. PyMuPDF is not bundled with this project; users install it separately via `pip`.
 
 ---
 

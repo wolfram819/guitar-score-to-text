@@ -15,6 +15,12 @@ Usage:
     python score_to_text.py "score.png"
     python score_to_text.py "score.pdf" --remote user@host
     python score_to_text.py "score.pdf" --local
+
+Disclaimer:
+    This tool is intended for use with your own original scores or
+    public domain / copyright-free scores. Users are responsible for
+    ensuring compliance with applicable copyright laws. Do not
+    redistribute converted text of copyrighted scores.
 """
 
 import argparse
